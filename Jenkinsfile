@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/TON-COMPTE/NOM-DU-DEPOT.git'
+            }
+        }
+
+        stage('Build images') {
+            steps {
+                bat 'docker build -t mern-server ./Server'
+                bat 'docker build -t mern-client ./Client'
+            }
+        }
+
+        stage('Deploy with Compose') {
+            steps {
+                bat 'docker compose down'
+                bat 'docker compose up --build -d'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat 'ping -n 15 127.0.0.1 >nul'
+                bat 'docker compose ps'
+                bat 'curl -f http://localhost:3000'
+            }
+        }
+    }
+
+    post {
+        failure {
+            bat 'docker compose logs'
+        }
+    }
+}
