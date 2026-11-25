@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         PATH = "C:\\Users\\aboub\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;${env.PATH}"
+        DOCKER_CONFIG = "C:\\Users\\aboub\\.docker"
     }
 
     stages {
