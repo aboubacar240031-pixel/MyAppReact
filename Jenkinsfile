@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/TON-COMPTE/NOM-DU-DEPOT.git'
+                git branch: 'main', url: 'https://github.com/aboubacar240031-pixel/MyAppReact.git'
             }
         }
 
