@@ -112,13 +112,6 @@ Avant de lancer Compose, j'ai supprimé les conteneurs et le réseau créés à 
 
 Le fichier `Jenkinsfile` à la racine décrit un pipeline en 4 étapes :
 
-| Étape                        | Rôle                                                                                            |
-| ----------------------------- | ------------------------------------------------------------------------------------------------ |
-| **Checkout**            | Récupère le code depuis mon dépôt GitHub (branche `main`)                                  |
-| **Build images**        | Construit les images `mern-server` et `mern-client`                                          |
-| **Deploy with Compose** | Arrête l'ancienne version (`docker compose down`) puis lance `docker compose up --build -d` |
-| **Test**                | Attend le démarrage, affiche `docker compose ps` et teste le client avec `curl`             |
-
 Le bloc `post { failure { ... } }` affiche les logs Docker Compose si le pipeline échoue.
 
 Le job s'appelle **TP4-MERN**, de type *Pipeline*, avec la définition *Pipeline script from SCM* (Git, branche `*/main`, Script Path `Jenkinsfile`).
